@@ -232,6 +232,123 @@ Observamos en el navegador que introduciendo http://127.0.0.1:8000 en el navegad
 ![plantilla_zensical](./recursos/plantilla_zensical.png)
 
 Ejecutamos un **sexto commit** para dejar actualizado el documento README.md del proceso.
+---
+## Configuración
+Vamos a crear todos los ficheros correspondientes a la estructura de la página web y a editarlos.
 ~~~bash
+~/dpl/AE2$ cd docs/
 
+~/dpl/AE2/docs$ ll
+total 16
+drwxrwxr-x  2 oscar oscar 4096 oct  7 15:05 ./
+drwxrwxr-x 10 oscar oscar 4096 oct  7 15:24 ../
+-rw-rw-r--  1 oscar oscar 3839 oct  7 15:05 index.md
+-rw-rw-r--  1 oscar oscar 1233 oct  7 15:05 markdown.md
+~/dpl/AE2/docs$ nano index.md 
+
+~/dpl/AE2/docs$ touch entorno.md
+~~~
+El fichero **index.md** tendrá el siguiente contenido:
+~~~bash
+# AE2: Despliegue de un sitio web estático con Nginx y Zensical.
+Se trata de un sitio web que documenta todo el proceso realizado por el alumno del módulo de Despliegue de Aplicaciones Web (DPL) del segundo curso de DAW.
+## Objetivo.
+El fin de este sitio web es documentar el proceso de construcción y despliegue de un sitio web estático generado con **Zensical** (basado en MkDocs) y servido mediante un servidor web **Nginx** dentro de un contenedor Docker **'dpl-lab'**.
+## Estructura de la documentación.
+- **Entorno de trabajo e instalación:**: Preparación de la máquina virtual, Git, GitHub y entorno Python con 'uv'.
+- **Configuración de Zensical**: Instalación, estructura de archivos y compilación.
+- **Servidor Nginx y despliegue en producción**: Configuración del Server Block y despliegue en producción.
+## Autor.
+El alumno Óscar Regalado León.
+~~~
+El resto de ficheros tendrán el contenido expuesto en esta documentación README.md pero distribuida según su categoría.
+Generaremos un **commit** por cada fichero creado y editado. Por lo tanto el **séptimo commit** está vinculado a la edición del fichero **index.html**
+~~~bash
+~/dpl/AE2/docs$ git add index.md 
+
+~/dpl/AE2/docs$ git commit -m "Edición de index.md" -m "Se edita con el contenido de la página principal el fichero index.md"
+[main 687a3a7] Edición de index.md
+ 1 file changed, 10 insertions(+), 173 deletions(-)
+
+~/dpl/AE2/docs$ git push origin main
+Enumerando objetos: 7, listo.
+Contando objetos: 100% (7/7), listo.
+Compresión delta usando hasta 6 hilos
+Comprimiendo objetos: 100% (4/4), listo.
+Escribiendo objetos: 100% (4/4), 856 bytes | 122.00 KiB/s, listo.
+Total 4 (delta 1), reusados 0 (delta 0), pack-reusados 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To github.com:oregaladoleon/AE2-zensical-nginx.git
+   be68d7d..687a3a7  main -> main
+~~~
+El **octavo commit** está vinculado a la creación y edición del fichero ~dpl/AE2/docs/entorno.md:
+~~~bash
+~/dpl/AE2/docs$ git add entorno.md 
+
+~/dpl/AE2/docs$ git commit -m "Creación y edición del fichero entorno.md" -m "Se crea y se edita en el directorio ~dpl/AE2/docs/ el fichero entorno.md con el contenido correspondiente."
+[main 7783cbb] Creación y edición del fichero entorno.md
+ 1 file changed, 96 insertions(+)
+ create mode 100644 docs/entorno.md
+
+~/dpl/AE2/docs$ git push origin main
+Enumerando objetos: 6, listo.
+Contando objetos: 100% (6/6), listo.
+Compresión delta usando hasta 6 hilos
+Comprimiendo objetos: 100% (4/4), listo.
+Escribiendo objetos: 100% (4/4), 1.98 KiB | 337.00 KiB/s, listo.
+Total 4 (delta 1), reusados 0 (delta 0), pack-reusados 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To github.com:oregaladoleon/AE2-zensical-nginx.git
+   687a3a7..7783cbb  main -> main
+~~~
+El **noveno commit** está vinculado a la creación y edición del fichero ~dpl/AE2/docs/zensical.md:
+~~~bash
+/dpl/AE2/docs$ touch zensical.md
+
+~/dpl/AE2/docs$ git add zensical.md 
+
+~/dpl/AE2/docs$ git commit -m "Creación y edición del fichero zensical.md" -m "Se crea y edita en el directorio ~dpl/AE2/docs/ el fichero zensical.md con el contenido correspondiente."
+[main fd9af86] Creación y edición del fichero zensical.md
+ 1 file changed, 145 insertions(+)
+ create mode 100644 docs/zensical.md
+
+~/dpl/AE2/docs$ git push origin main
+Enumerando objetos: 6, listo.
+Contando objetos: 100% (6/6), listo.
+Compresión delta usando hasta 6 hilos
+Comprimiendo objetos: 100% (4/4), listo.
+Escribiendo objetos: 100% (4/4), 2.20 KiB | 250.00 KiB/s, listo.
+Total 4 (delta 2), reusados 0 (delta 0), pack-reusados 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To github.com:oregaladoleon/AE2-zensical-nginx.git
+   7783cbb..fd9af86  main -> main
+~~~
+Ahora debemos editar el fichero de configuración general ~dpl/AE2/zensical.toml para establecer los ficheros .md alojados en ~dpl/AE2/docs/ que deben aparecer en la web como pestañas. Añadimos en el apartado de [nav]
+~~~
+[project]
+site_url = "https://www.example.com/"
+site_name = "AE2 - Despliegue Nginx y Zensical"
+# site_description = "Your project description"
+# site_author = "Your name"
+
+# copyright = "Copyright &copy; 2026 Your name"
+
+# repo_url = "https://github.com/user/repo"
+# repo_name = "user/repo"
+# edit_uri = "edit/main/docs/"
+
+nav = [
+    { "Inicio" = "index.md" },
+    { "Entorno de Trabajo" = "entorno.md" },
+    { "Zensical" = "zensical.md" },
+    { "Nginx y Despliegue" = "nginx.md" }
+]
+~~~
+
+Comprobamos el funcionamiento correcto aplicando:
+~~~bash
+~/dpl/AE2$ uv run zensical serve
+Serving /home/oscar/dpl/AE2/site on http://localhost:8000
+Build started
+No issues found
 ~~~
