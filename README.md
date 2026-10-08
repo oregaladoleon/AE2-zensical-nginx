@@ -493,3 +493,22 @@ Connection: keep-alive
 ETag: "6ac6b270-47ed"
 Accept-Ranges: bytes
 ~~~
+Vamos a aplicar el **undécimo commit** reflejando la actualización del README.md con la configuración del contenedor.
+~~~bash
+~/dpl/AE2$ git add README.md 
+
+~/dpl/AE2$ git commit -m "Actualización de documentación, configuración de contenedor Docker" -m "Se procede a actualizar la documentación con toda la configuración realizada dentro del contenedor docker dpl-lab de nginx"
+[main 922c465] Actualización de documentación, configuración de contenedor Docker
+ 1 file changed, 142 insertions(+), 1 deletion(-)
+
+~/dpl/AE2$ git push origin main
+Enumerando objetos: 5, listo.
+Contando objetos: 100% (5/5), listo.
+Compresión delta usando hasta 6 hilos
+Comprimiendo objetos: 100% (3/3), listo.
+Escribiendo objetos: 100% (3/3), 2.70 KiB | 554.00 KiB/s, listo.
+Total 3 (delta 2), reusados 0 (delta 0), pack-reusados 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To github.com:oregaladoleon/AE2-zensical-nginx.git
+   394679e..922c465  main -> main
+~~~
