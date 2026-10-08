@@ -512,3 +512,25 @@ remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
 To github.com:oregaladoleon/AE2-zensical-nginx.git
    394679e..922c465  main -> main
 ~~~
+Finalmente, debemos editar el fichero **~/dpl/AE2/docs/nginx.md** con los pasos realizados:
+~~~bash
+~/dpl/AE2/docs$ nano nginx.md
+~~~
+Realizamos el **duodécimo commit** final, con la actualización de el README.md y **~/dpl/AE2/docs/nginx.md**.
+
+---
+Caso extraordinario, si queremos actualizar el contenido de alguna página, debemos:
+~~~
+Ejecuta esta secuencia desde la terminal de tu máquina local (~/dpl/AE2):
+
+1.Recompilar el sitio estático:Genera de nuevo el paquete de páginas HTML en la carpeta site/ local:
+Bash:
+
+uv run zensical build
+
+2.Copiar el nuevo sitio al contenedor:Vuelca el contenido actualizado de site/ en el directorio de Nginx dentro del contenedor:
+Bash:
+
+docker cp site/. dpl-lab:/var/www/html/ae2/
+
+~~~
