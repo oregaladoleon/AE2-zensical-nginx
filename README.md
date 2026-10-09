@@ -2,7 +2,7 @@
 > Autor: Óscar Regalado León  
 > Fecha: Octubre 2026 
 
-Creación de un repositorio en Git y Github. Simulación de un flujo de trabajo entre dos usuarios, aplicación de: (fork, issue, rama, PR, conflicto, etiqueta y release.
+El objeto de este repositorio es desarrollar un site/ a través de **zensical** y otro a través de **Jekyll**, emplearemos el contenedor docker laboratorio del módulo **dpl-lab** para lanzar a través de **nginx** ambos site/.
 
 ## Índice
 
@@ -532,5 +532,40 @@ uv run zensical build
 Bash:
 
 docker cp site/. dpl-lab:/var/www/html/ae2/
-
 ~~~
+
+## Comprobación
+Lanzado nginx dentro del contenedor, probamos desde el contendor:
+~~~bash
+/# curl -I http://127.0.0.1 
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Date: Fri, 09 Oct 2026 09:04:14 GMT
+Content-Type: text/html
+Content-Length: 615
+Last-Modified: Wed, 07 Oct 2026 21:25:56 GMT
+Connection: keep-alive
+ETag: "6ac6b8e4-267"
+Accept-Ranges: bytes
+~~~
+También comprobamos desde el equipo anfitrión:
+~~~bash
+~/dpl/AE2$ curl -I http://127.0.0.1
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Date: Fri, 09 Oct 2026 09:06:17 GMT
+Content-Type: text/html
+Content-Length: 615
+Last-Modified: Wed, 07 Oct 2026 21:25:56 GMT
+Connection: keep-alive
+ETag: "6ac6b8e4-267"
+Accept-Ranges: bytes
+~~~
+Finalmente, desde el contenedor visualizamos los **logs**, para ello accedemos al fichero alojado en **/var/log/nginx/access.log**
+~~~bash
+cat /var/log/nginx/access.log
+~~~
+## Problemas encontrados y solución
+Los problemas encontrados se han resuelto y expuesto en el apartado anterior.
+## Repositorio remoto
+Enlace público: https://github.com/oregaladoleon/AE2-zensical-nginx.git  
